@@ -80,6 +80,7 @@ public class Home_Fragment extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
+            ds.clear();
             super.onPostExecute(s);
             dialog.dismiss();
             ArrayList<String> arrGas = new ArrayList<>();
@@ -95,8 +96,9 @@ public class Home_Fragment extends Fragment {
                     String anh =jsonObject.getString("link_img");
                     String loaigas=jsonObject.getString("loaigas");
                     String chucuahang =jsonObject.getString("chucuahang");
-
-                    ds.add(new Item_GasHome(tencuahang,giatien,sdt,diachi,anh,loaigas,chucuahang));
+                    String latlng =jsonObject.getString("latlng");
+                    String ch_id =jsonObject.getString("ch_id");
+                    ds.add(new Item_GasHome(ch_id,tencuahang,giatien,sdt,diachi,anh,loaigas,chucuahang,latlng));
                 }
                 adapter=new RecyclerViewAdapter(ds,getContext(), new RecyclerViewAdapter.ClickListener() {
                     @Override

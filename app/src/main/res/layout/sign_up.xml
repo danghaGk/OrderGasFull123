@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_toolbarDangKy"
+        android:background="@color/colorPrimary"></android.support.v7.widget.Toolbar>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Họ tên"
+        android:id="@+id/edt_hoTen"
+        android:layout_marginTop="10dp"
+        android:background="#FFF"
+        android:layout_marginLeft="10dp"
+        android:drawableLeft="@drawable/ic_action_name"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Email"
+        android:id="@+id/edt_email"
+        android:background="#FFF"
+        android:layout_marginLeft="10dp"
+        android:drawableLeft="@drawable/icon_email"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <EditText
+        android:id="@+id/edt_pass"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Mật khẩu"
+        android:inputType="textPassword"
+        android:background="#FFF"
+        android:layout_marginLeft="10dp"
+        android:drawableLeft="@drawable/icon_pass"/>
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_viewpass"
+            android:id="@+id/btn_showPass"
+            />
+    </LinearLayout>
+    <EditText
+        android:id="@+id/edt_sdt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Số điện thoại"
+        android:background="#FFF"
+        android:layout_marginLeft="10dp"
+        android:drawableLeft="@drawable/icon_sdt"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Địa chỉ"
+        android:id="@+id/edt_diaChi"
+        android:background="#FFF"
+        android:layout_marginLeft="10dp"
+        android:drawableLeft="@drawable/icon_address"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Đăng ký"
+            android:textColor="#FFF"
+            android:id="@+id/btn_dangKyCreate"
+            android:background="@color/colorPrimaryDark"
+            android:layout_marginLeft="10dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Hủy"
+            android:textColor="#FFF"
+            android:id="@+id/btn_huyCreate"
+            android:layout_marginLeft="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_marginRight="10dp"/>
+    </LinearLayout>
+
+</LinearLayout>

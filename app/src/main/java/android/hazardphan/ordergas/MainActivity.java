@@ -1,5 +1,7 @@
 package android.hazardphan.ordergas;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -33,6 +35,10 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setLogo(R.drawable.gas_toolbar);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
+        SharedPreferences sharedPreferences  = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("checklogin","0");
+        editor.commit();
 // set the icon
 
 
