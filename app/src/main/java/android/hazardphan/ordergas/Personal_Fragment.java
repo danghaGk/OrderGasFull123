@@ -22,14 +22,7 @@ public class Personal_Fragment extends Fragment implements View.OnClickListener 
     CardView cardViewDangNhap;
     TextView txtDangNhap;
 
-    public interface OnRefreshSelected {
-        public void refreshFragment(boolean flag);
-    }
 
-    private OnRefreshSelected onRefreshSelected;
-    public Personal_Fragment() {
-        // Required empty public constructor
-    }
 
 
 
@@ -52,7 +45,8 @@ public class Personal_Fragment extends Fragment implements View.OnClickListener 
         return view;
 
     }
-public void test(){
+
+    public void test(){
     if(check == 1) {
         signin_activity = new Signin_Activity();
         String name = signin_activity.LayCacheDangNhap();
