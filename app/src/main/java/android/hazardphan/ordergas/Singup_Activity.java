@@ -1,6 +1,5 @@
 package android.hazardphan.ordergas;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -136,15 +135,17 @@ public class Singup_Activity extends AppCompatActivity implements View.OnClickLi
                     // Đưa thông tin lên server
                     CreateAcc();
                     // intent dữ liệu trở lại signin activity
-                    Intent intent1 = new Intent(this, Signin_Activity.class); // tạo intent
-                    Bundle bundle = new Bundle(); // tạo bunble để truyền sang 2 editext
-                    String user = edtEmail.getText().toString().trim();
-                    String pass = edtMatKhau.getText().toString().trim();
-                    bundle.putString("flag", "1"); // put vào bundle
-                    bundle.putString("user", user);
-                    bundle.putString("pass", pass);
-                    intent1.putExtra("login", bundle);
-                    startActivity(intent1);
+//                    Intent intent1 = new Intent(this, Signin_Activity.class); // tạo intent
+//                    Bundle bundle = new Bundle(); // tạo bunble để truyền sang 2 editext
+//                    String user = edtEmail.getText().toString().trim();
+//                    String pass = edtMatKhau.getText().toString().trim();
+//                    bundle.putString("flag", "1"); // put vào bundle
+//                    bundle.putString("user", user);
+//                    bundle.putString("pass", pass);
+//                    intent1.putExtra("login", bundle);
+//                    startActivity(intent1);
+                        finish();
+
 
                 }
                 break;

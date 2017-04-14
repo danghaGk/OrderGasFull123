@@ -45,7 +45,8 @@
             android:label="Đăng nhập"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity android:name=".Singup_Activity" />
-        <activity android:name=".UserDetail_Activity"></activity>
+        <activity android:name=".UserDetail_Activity" />
+        <activity android:name=".DetailInfro_Activity"></activity>
     </application>
 
 </manifest>

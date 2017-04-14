@@ -1,6 +1,5 @@
 package android.hazardphan.ordergas;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -33,8 +32,7 @@ import java.util.Map;
 public class Signin_Activity extends AppCompatActivity implements View.OnClickListener{
     Button btnDangKy, btnDangNhap;
     EditText edtuser,edtpass ;
-    String a ,b ;
-
+    Intent data;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +47,7 @@ public class Signin_Activity extends AppCompatActivity implements View.OnClickLi
         // Nhận dữ liệu từ signup Activity về
 
 
-        Intent data = this.getIntent(); // tao intent
+        data = this.getIntent(); // tao intent
         Bundle bundle = data.getBundleExtra("login"); // lay ra bundle tu intent
         if( bundle.getString("flag").equals("1")) { // nếu bundle trả về trùng thì ....
             String user = bundle.getString("user");
@@ -66,7 +64,6 @@ public class Signin_Activity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.btn_dangNhap:
                 KiemtraDangNhap();
-               finish();
 
                 break;
             case R.id.btn_dangKy:
@@ -75,11 +72,7 @@ public class Signin_Activity extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
-     public String LayCacheDangNhap(){
-        SharedPreferences cache = getPreferences(Context.MODE_PRIVATE);
-         String name =cache.getString("name","");
-         return name ;
-     }
+
     public void KiemtraDangNhap(){
         String url = "http://goigas.96.lt/cuahang/dangnhap.php";
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -94,15 +87,10 @@ public class Signin_Activity extends AppCompatActivity implements View.OnClickLi
                         Toast.makeText(getApplicationContext(),"Đăng nhập thành công!",Toast.LENGTH_SHORT).show();
                         String name = obj.getString("user_name");
 
-                        SharedPreferences sharedPreferences  = getPreferences(Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("name",name);
-                        editor.commit();
 
-                        SharedPreferences sharedPreferences1  = getPreferences(Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor1 = sharedPreferences.edit();
-                        editor1.putString("checklogin","1");
-                        editor1.commit();
+                     sData(name);
+
+
                     }else{
                         Toast.makeText(getApplicationContext(),"Đăng nhập lỗi!",Toast.LENGTH_SHORT).show();
                     }
@@ -127,6 +115,23 @@ public class Signin_Activity extends AppCompatActivity implements View.OnClickLi
         };
 
         queue.add(stringRequest); // Add the request to the RequestQueue.
+    }
+    public void sData(String name){
+
+        SharedPreferences share = getSharedPreferences("MyShare", MODE_PRIVATE);
+        SharedPreferences.Editor editor = share.edit();
+        editor.putString("name",name);
+        editor.putString("tendangnhap", edtuser.getText().toString());
+        editor.putString("checklogin","1");
+        editor.commit();
+
+        senToFragment(1,1);
+    }
+    public void senToFragment(int resultcode ,int i){
+        Intent intent =data;
+        intent.putExtra("data",i);
+        setResult(resultcode,intent);
+        finish();
     }
 }
 

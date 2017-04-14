@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:drawableLeft="@drawable/icon_email"
-        android:hint="Email" />
+        android:drawableLeft="@drawable/icon_sdt"
+        android:hint="Số điện thoại" />
 
     <EditText
         android:layout_width="match_parent"
@@ -34,8 +34,9 @@
             android:text="Đăng Nhập"
             android:id="@+id/btn_dangNhap"
             android:layout_marginLeft="100dp"
-            android:background="@android:color/transparent"
+            android:background="?android:attr/selectableItemBackground"
             android:textSize="12dp"
+
             android:textColor="#2196F3"/>
 
         <Button
@@ -43,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:background="@android:color/transparent"
+            android:background="?android:attr/selectableItemBackground"
             android:text="Đăng Ký"
             android:textColor="#2196F3"
             android:textSize="12dp" />
