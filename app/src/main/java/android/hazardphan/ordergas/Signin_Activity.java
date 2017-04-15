@@ -121,7 +121,7 @@ public class Signin_Activity extends AppCompatActivity implements View.OnClickLi
         SharedPreferences share = getSharedPreferences("MyShare", MODE_PRIVATE);
         SharedPreferences.Editor editor = share.edit();
         editor.putString("name",name);
-        editor.putString("tendangnhap", edtuser.getText().toString());
+        editor.putString("user_id", edtuser.getText().toString());
         editor.putString("checklogin","1");
         editor.commit();
 

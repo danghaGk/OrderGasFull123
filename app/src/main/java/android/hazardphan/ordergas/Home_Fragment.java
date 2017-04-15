@@ -2,7 +2,10 @@ package android.hazardphan.ordergas;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.hazardphan.ordergas.themch.SendData;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,7 +34,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Home_Fragment extends Fragment {
+public class Home_Fragment extends Fragment implements SendData{
     private String url = "http://goigas.96.lt/cuahang/get_all_cuahang.php";
     private RecyclerView recyclerView;
     private ArrayList<Item_GasHome> ds = new ArrayList<>();
@@ -49,8 +52,26 @@ public class Home_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.home_fragment, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
-
+        SharedPreferences share = getActivity().getSharedPreferences("Home",  Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = share.edit();
+        editor.putString("home_checkLoad","0");
+        editor.commit();
         return  v;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences share = getActivity().getSharedPreferences("Home", Context.MODE_PRIVATE);
+        if (share.getString("home_checkLoad", "") != "")
+        {
+            if(share.getString("home_checkLoad", "").equals("1"))
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    new docJson().execute("http://goigas.96.lt/cuahang/get_all_cuahang.php");
+                }
+            });
+        }
     }
 
     @Override
@@ -64,6 +85,12 @@ public class Home_Fragment extends Fragment {
         });
         setHasOptionsMenu(true);
     }
+
+    @Override
+    public void passData(String data) {
+
+    }
+
     class docJson extends AsyncTask<String ,Integer,String>{
         @Override
         protected void onPreExecute() {

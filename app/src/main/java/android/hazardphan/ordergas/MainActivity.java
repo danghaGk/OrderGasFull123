@@ -1,7 +1,8 @@
 package android.hazardphan.ordergas;
 
-import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hazardphan.ordergas.themch.MainActivity_CreateCH;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -35,11 +36,11 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setLogo(R.drawable.gas_toolbar);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        SharedPreferences sharedPreferences  = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("checklogin","0");
-        editor.commit();
-// set the icon
+//        SharedPreferences sharedPreferences  = getPreferences(Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("checklogin","0");
+//        editor.commit();
+//// set the icon
 
 
 
@@ -47,8 +48,18 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                SharedPreferences share = getSharedPreferences("MyShare", MODE_PRIVATE);
+                if(share.getString("checklogin","").equals("0")||share.getString("checklogin","")=="") {
+                    Snackbar.make(view, "Bạn cần đăng nhập để sử dụng chức năng này!", Snackbar.LENGTH_LONG)
+                            .show();
+                }
+                else
+                {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity_CreateCH.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getApplication().startActivity(intent);
+                }
+
             }
         });
 

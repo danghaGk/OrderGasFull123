@@ -145,7 +145,7 @@ public class CategoryGas_Activity extends AppCompatActivity implements AppBarLay
                 .load(item.getAnh())
                 .into(coverImage);
         id_ch = item.getCh_id();
-        getJsonCmt(url_id + item.getSodienthoai());
+        getJsonCmt(url_id + item.getCh_id());
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -270,20 +270,21 @@ public class CategoryGas_Activity extends AppCompatActivity implements AppBarLay
             // Show rationale and request permission.
         }
         String CurrentString = item.getLatlng();
-        String[] separated = CurrentString.split(",");
-        Double a = Double.parseDouble(separated[0].trim());
-        Double b = Double.parseDouble(separated[1].trim());
+        if(item.getLatlng().equals("Erro0")==false) {
+            String[] separated = CurrentString.split(",");
+            Double a = Double.parseDouble(separated[0].trim());
+            Double b = Double.parseDouble(separated[1].trim());
 
 
-        LatLng latLng = new LatLng(a, b);
-        map.getUiSettings().setCompassEnabled(true);
-        MarkerOptions vitri = new MarkerOptions();
-        vitri.draggable(true);
-        vitri.position(latLng);
-        vitri.title(item.getDiadiem());
-        vitri.snippet(item.getTencuahang());
-        Marker marker = map.addMarker(vitri);
-        marker.showInfoWindow();
+            LatLng latLng = new LatLng(a, b);
+            map.getUiSettings().setCompassEnabled(true);
+            MarkerOptions vitri = new MarkerOptions();
+            vitri.draggable(true);
+            vitri.position(latLng);
+            vitri.title(item.getDiadiem());
+            vitri.snippet(item.getTencuahang());
+            Marker marker = map.addMarker(vitri);
+            marker.showInfoWindow();
 
 //        CameraUpdate move = CameraUpdateFactory.newLatLng(latLng);
 //        map. moveCamera(move);
@@ -292,16 +293,20 @@ public class CategoryGas_Activity extends AppCompatActivity implements AppBarLay
 
 //        CameraUpdate move = CameraUpdateFactory.newLatLngZoom(latLng,10);
 //        map.animateCamera(move,3000,null);
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(latLng)      // Sets the center of the map to Mountain View
-                .zoom(20)                   // Sets the zoom
-                .bearing(4.3f)                // Sets the orientation of the camera to east
-                .tilt(45)                   // Sets the tilt of the camera to 30 degrees
-                .build();                   // Creates a CameraPosition from the builder
-        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(latLng)      // Sets the center of the map to Mountain View
+                    .zoom(20)                   // Sets the zoom
+                    .bearing(4.3f)                // Sets the orientation of the camera to east
+                    .tilt(45)                   // Sets the tilt of the camera to 30 degrees
+                    .build();                   // Creates a CameraPosition from the builder
+            map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
-        statusCheck();
+            statusCheck();
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"Lỗi vị trí",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void getJsonCmt(String url_id) {
@@ -352,9 +357,9 @@ public class CategoryGas_Activity extends AppCompatActivity implements AppBarLay
     }
 
     public void sendComment() {
-        if (ed_name.getText().toString().isEmpty())
+        if (ed_name.getText().toString().trim().equals(""))
             ed_name.setError("Not null");
-        else if (ed_text.getText().toString().isEmpty())
+        else if (ed_text.getText().toString().trim().equals(""))
             ed_text.setError("Not null");
         else {
             String url = "http://goigas.96.lt/cuahang/create_comment.php";
@@ -370,7 +375,7 @@ public class CategoryGas_Activity extends AppCompatActivity implements AppBarLay
                         String name = obj.getString("success");
                         if (name.equals("1")) {
                             Toast.makeText(getApplicationContext(), "Gui thanh cong", Toast.LENGTH_SHORT).show();
-                            getJsonCmt(url_id + item.getSodienthoai());
+                            getJsonCmt(url_id + item.getCh_id());
                             ed_name.setText("");
                             ed_text.setText("");
                         } else {
@@ -424,5 +429,15 @@ public class CategoryGas_Activity extends AppCompatActivity implements AppBarLay
 
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
     }
 }

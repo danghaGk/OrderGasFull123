@@ -38,7 +38,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB4yBSifxpko_VMvWyds8EacYf3OdgPS9Q" />
+            android:value="AIzaSyAeiVSzPzN5jj79LzA6hmeXMjmbD9Ij-yI" />
 
         <activity
             android:name=".Signin_Activity"
@@ -47,6 +47,14 @@
         <activity android:name=".Singup_Activity" />
         <activity android:name=".UserDetail_Activity" />
         <activity android:name=".DetailInfro_Activity"></activity>
+        <activity android:name=".themch.MainActivity_CreateCH">
+
+        </activity>
+        <activity android:name=".themch.ActivityNext_CreateCH">
+            <intent-filter>
+                <action android:name="android.hazardphan.ordergas.uploadservice.broadcast.status" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
