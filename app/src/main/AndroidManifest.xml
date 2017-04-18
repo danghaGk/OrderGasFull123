@@ -41,6 +41,7 @@
             android:value="AIzaSyAeiVSzPzN5jj79LzA6hmeXMjmbD9Ij-yI" />
 
         <activity
+
             android:name=".Signin_Activity"
             android:label="Đăng nhập"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
@@ -55,6 +56,7 @@
                 <action android:name="android.hazardphan.ordergas.uploadservice.broadcast.status" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -4,54 +4,99 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp"
+    android:orientation="vertical">
 
-    >
-
-    <EditText
-        android:id="@+id/edTen"
-        android:layout_width="match_parent"
+    <TextView
+        android:textColor="#2f4ee7"
+        android:textSize="25sp"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="ten cua hang" />
-
-    <EditText
-        android:id="@+id/edLoaiGas"
+        android:layout_gravity="center"
+        android:text="THÊM CỬA HÀNG GAS"/>
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="loai gas" />
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edTen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên cửa hàng" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/edMota"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Giá dao động"></EditText>
 
-    <EditText
-        android:id="@+id/edSdt"
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="sdt"
-        android:inputType="number"/>
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edLoaiGas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Loại gas" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/edChucuahang"
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Chu cua hang"
-        />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edMota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Giá dao động"></EditText>
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edSdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Số điện thoại"
+            android:inputType="number"/>
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edChucuahang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Chủ cửa hàng"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
 <RelativeLayout
+    android:layout_marginTop="30dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
     <Button
+        android:padding="15dp"
+        android:textColor="#fff"
+        android:background="@drawable/selector_btnthem"
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tiep >> "
+        android:text="Tiếp >>> "
         android:layout_alignParentLeft="true"
         android:layout_marginStart="50dp"
         />
     <Button
+        android:padding="15dp"
+        android:background="@drawable/selector_btnthem"
+        android:textColor="#fff"
         android:id="@+id/btn_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,4 +105,12 @@
         android:layout_marginEnd="50dp"
         />
 </RelativeLayout>
+    <TextView
+        android:textColor="#ec0f0f"
+        android:textSize="12sp"
+        android:layout_marginTop="40dp"
+        android:text="Chú ý : Thông tin phải khách hàng cung cấp phải chính xác, trong quá trình cập nhật chúng tôi sẽ kiểm tra vàloại bỏ không báo trước"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

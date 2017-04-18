@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     List<Item_GasHome> ds =  null;
     private ClickListener clickListener;
     Context context;
+    private int Status;
+    private boolean check = true;
 
     public RecyclerViewAdapter(ArrayList<Item_GasHome> arrayList, ClickListener clickListener, Context context) {
         this.arrayList = arrayList;
@@ -78,6 +81,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView txtTenCuaHang ,txtDiaChi,txtGiaTien,txtSDT;
         ImageView imgCuaHang;
         LinearLayout lnCall,lnComment,lnLike;
+        ImageView imgStar ;
         public RecyclerViewHolder(View v) {
             super(v);
             v.setOnClickListener(this);
@@ -89,6 +93,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             lnCall = (LinearLayout) v.findViewById(R.id.lnCall);
             lnComment = (LinearLayout) v.findViewById(R.id.lnComment);
             lnLike = (LinearLayout) v.findViewById(R.id.lnLike);
+            imgStar = (ImageView) v.findViewById(R.id.imgStar);
 
             lnCall.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -105,8 +110,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 }
             });
+            imgStar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(check){
+                        imgStar.setImageResource(R.drawable.star_gold);
+                        check = false;
+                        Log.e("check", check +"" );
+                    }else {
+                        imgStar.setImageResource(R.drawable.star_white);
+                        check =true ;
+                    }
 
-
+                }
+            });
+//run ha a
+             // a oi chay dc roi e nhan vao thi no doi mau vang nhuwng bam tiep
         }
 
 

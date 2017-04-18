@@ -2,15 +2,18 @@ package android.hazardphan.ordergas;
 
 
 import android.app.ProgressDialog;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hazardphan.ordergas.themch.MainActivity_CreateCH;
 import android.hazardphan.ordergas.themch.SendData;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -29,6 +32,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
@@ -52,7 +57,7 @@ public class Home_Fragment extends Fragment implements SendData{
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.home_fragment, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
-        SharedPreferences share = getActivity().getSharedPreferences("Home",  Context.MODE_PRIVATE);
+        SharedPreferences share = getActivity().getSharedPreferences("Home",  MODE_PRIVATE);
         SharedPreferences.Editor editor = share.edit();
         editor.putString("home_checkLoad","0");
         editor.commit();
@@ -61,7 +66,7 @@ public class Home_Fragment extends Fragment implements SendData{
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferences share = getActivity().getSharedPreferences("Home", Context.MODE_PRIVATE);
+        SharedPreferences share = getActivity().getSharedPreferences("Home", MODE_PRIVATE);
         if (share.getString("home_checkLoad", "") != "")
         {
             if(share.getString("home_checkLoad", "").equals("1"))
@@ -77,6 +82,52 @@ public class Home_Fragment extends Fragment implements SendData{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences share =getActivity().getSharedPreferences("MyShare", MODE_PRIVATE);
+                if(share.getString("checklogin","").equals("0")||share.getString("checklogin","")=="") {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                    // khởi tạo dialog
+                    alertDialogBuilder.setMessage("Vui lòng đăng nhập trước khi đăng tin ");
+                    // thiết lập nội dung cho dialog
+                    alertDialogBuilder.setPositiveButton("Đồng Ý", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            SharedPreferences share = getActivity().getSharedPreferences("MyShare", MODE_PRIVATE);
+                            if (share.getString("checklogin", "").equals("0") || share.getString("checklogin", "") == "") {
+                                Intent intent = new Intent(getActivity(), Signin_Activity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("flag", "0");
+                                intent.putExtra("login", bundle);
+                                startActivityForResult(intent, 10);
+                            }
+                            // button "Có" thoát khỏi ứng dụng
+                        }
+                    });
+
+                    alertDialogBuilder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            // button "no" ẩn dialog đi
+                        }
+                    });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    // tạo dialog
+                    alertDialog.show();
+                }
+                else
+                {
+                    Intent intent = new Intent(getContext(), MainActivity_CreateCH.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    getActivity().startActivity(intent);
+                }
+
+            }
+        });
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -189,9 +240,23 @@ public class Home_Fragment extends Fragment implements SendData{
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         MenuItem mSearchMenuItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) mSearchMenuItem.getActionView();
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+        final SearchView searchView = (SearchView) mSearchMenuItem.getActionView();
+        searchView.setQuery("Tìm kiếm theo địa chỉ ", true);
 
+
+        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
+            @Override
+            public boolean onSuggestionSelect(int i) {
+                return false;
+            }
+
+            @Override
+            public boolean onSuggestionClick(int position) {
+                searchView.setQuery("Tìm kiếm theo địa chỉ ... ", false); //to set the text
+                return true;
+            }
+        });
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
 

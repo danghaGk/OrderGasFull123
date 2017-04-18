@@ -53,7 +53,7 @@ public class MainActivity_CreateCH extends AppCompatActivity implements GoogleAp
         if (Build.VERSION.SDK_INT >= 23) {
             askpmis();
         }
-getLocation();
+        getLocation();
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

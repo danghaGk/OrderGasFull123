@@ -3,17 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp"
     android:id="@+id/activity_next">
 
     <TextView
+
+        android:textColor="#3b64ea"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:text="Nhấn vào camera để tải ảnh lên"
+        android:textSize="20dp" />
+
+    <TextView
+        android:textColor="#ff0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
         android:text="Chú ý: Ảnh không liên quan sẽ bị xóa mà không báo trước"
-        android:textSize="18dp"
+        android:textSize="13dp"
         />
 
     <ImageView
+        android:layout_marginTop="20dp"
         android:id="@+id/img_bg"
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -21,35 +35,64 @@
         android:onClick="onClick"
         android:src="@drawable/ic_choise_img" />
 
-    <EditText
-        android:id="@+id/ed_tinh"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="tinh" />
 
-    <EditText
-        android:id="@+id/ed_quan"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="quan huyen" />
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/ed_tinh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tỉnh (VD : Hà Nội )" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/ed_dc"
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="so 12,ngõ 192/7,nguyên xá" />
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/ed_quan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quận, Huyện (VD : Nam Từ Liêm )" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/ed_dc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="(VD: SN 12,tổ 12,Ngõ 19, Làng Nguyên Xá" />
+    </android.support.design.widget.TextInputLayout>
+
+
+
+
+
     <RelativeLayout
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
     <Button
+        android:textColor="#fff"
+        android:padding="10dp"
+        android:background="@drawable/selector_btnthem"
         android:id="@+id/btn_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Đăng"
+        android:text="Đăng tin"
         android:layout_marginStart="50dp"
         android:layout_alignParentLeft="true"/>
         <Button
+            android:textColor="#fff"
+            android:padding="10dp"
+            android:background="@drawable/selector_btnthem"
             android:id="@+id/btn_out_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

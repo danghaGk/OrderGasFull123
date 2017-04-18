@@ -1,8 +1,10 @@
 package android.hazardphan.ordergas;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -33,6 +35,7 @@ public class Signin_Activity extends AppCompatActivity implements View.OnClickLi
     Button btnDangKy, btnDangNhap;
     EditText edtuser,edtpass ;
     Intent data;
+    ProgressDialog dialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +66,18 @@ public class Signin_Activity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_dangNhap:
-                KiemtraDangNhap();
+                dialog = ProgressDialog.show(this, "","Đang kiểm tra đăng nhập ... ",
+                        true);
+                dialog.show();
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        KiemtraDangNhap();
+                        dialog.dismiss();
+                    }
+                }, 1000);
+
 
                 break;
             case R.id.btn_dangKy:
