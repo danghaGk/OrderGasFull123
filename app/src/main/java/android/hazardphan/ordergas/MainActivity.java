@@ -1,5 +1,8 @@
 package android.hazardphan.ordergas;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -11,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ViewPager viewPager ;
@@ -107,15 +111,57 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT,
+                    "Hey check out my app at: https://play.google.com/store/apps/details?id=android.hazardphan.ordergas");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
             // Handle the camera action
         } else if (id == R.id.nav_like) {
+            Uri uri = Uri.parse("https://play.google.com/store/apps/developer?id==02198632220092951075");
+            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+            // To count with Play market backstack, After pressing back button,
+            // to taken back to our application, we need to add following flags to intent.
+            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            try {
+                startActivity(goToMarket);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://play.google.com/store/apps/details?id=" + getApplication().getPackageName())));
+            }
 
         } else if (id == R.id.nav_respond) {
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("message/rfc822");            i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"phancuong170796@gmail.com"});
+            i.putExtra(Intent.EXTRA_SUBJECT, "Chủ đề bài viết");
+            i.putExtra(Intent.EXTRA_TEXT   , "Nội dung bạn gửi");
+            try {
+                startActivity(Intent.createChooser(i, "Send mail..."));
+            } catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(getApplication(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+            }
 
         } else if (id == R.id.nav_ggplay) {
+            Uri uri = Uri.parse("https://play.google.com/store/apps/developer?id=02198632220092951075");
+            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+            // To count with Play market backstack, After pressing back button,
+            // to taken back to our application, we need to add following flags to intent.
+            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+            try {
+                startActivity(goToMarket);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com" )));
+            }
 
         } else if (id == R.id.nav_info) {
-
+            Intent i = new Intent(MainActivity.this,Info.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
