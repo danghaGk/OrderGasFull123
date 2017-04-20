@@ -109,7 +109,7 @@
         android:textColor="#ec0f0f"
         android:textSize="12sp"
         android:layout_marginTop="40dp"
-        android:text="Chú ý : Thông tin phải khách hàng cung cấp phải chính xác, trong quá trình cập nhật chúng tôi sẽ kiểm tra vàloại bỏ không báo trước"
+        android:text="Chú ý : Thông tin phải khách hàng cung cấp phải chính xác, trong quá trình cập nhật chúng tôi sẽ kiểm tra và loại bỏ không báo trước"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

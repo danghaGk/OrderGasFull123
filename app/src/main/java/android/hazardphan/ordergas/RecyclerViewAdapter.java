@@ -124,7 +124,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 }
             });
-//run ha a
+                //run ha a
              // a oi chay dc roi e nhan vao thi no doi mau vang nhuwng bam tiep
         }
 

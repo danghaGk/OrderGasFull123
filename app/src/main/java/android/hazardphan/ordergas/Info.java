@@ -26,7 +26,7 @@ public class Info extends Activity {
                 "<h5> Thành viên Thực hiện :</h5>\n" +
                 "<p style=\"text-indent:10px\"> Phan Mạnh Cường (CLC-KTPM-K9)</p>\n" +
                 "<p style=\"text-indent:10px\"> Nguyễn Văn Cường (KTPM2-K9) :</p>\n" +
-                "<p style=\"text-indent:10px\"> Phạm Đăng Hà (KTPM2-K9) :</p>\n" +
+                "<p style=\"text-indent:10px\"> Đỗ Đăng Hà (KTPM2-K9) :</p>\n" +
                 "<p style=\"text-indent:10px\"> Nguyễn Hải Yến (KHMT1-K9) :</p>\n" +
                 "<p style=\"text-indent:10px\">– Chúng tôi rất mong nhận được sự phản hồi của các bạn.Mọi thôn tin các bạn vui lòng liên hệ theo địa chỉ :</p>\n" +
                 "<p style=\"color:#F06;text-indent:5px\">Email: <a href=\"#\">hazardphan@gmail.com</a></p>\n" +

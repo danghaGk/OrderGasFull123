@@ -74,7 +74,7 @@ public class Personal_Fragment extends Fragment implements View.OnClickListener 
                     Intent intent = new Intent(getContext(), DetailInfro_Activity.class);
                     SharedPreferences share1 = getActivity().getSharedPreferences("MyShare", MODE_PRIVATE);
 
-                    intent.putExtra("username", share1.getString("tendangnhap", ""));
+                    intent.putExtra("username", share1.getString("user_id", ""));
                     startActivity(intent);
                 }
                 break;

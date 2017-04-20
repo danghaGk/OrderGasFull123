@@ -19,6 +19,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ViewPager viewPager ;
     TabLayout tabLayout;
+
     //mang icon cua tablayout
     private int[] tabIcons = {
             R.drawable.shopgas,
@@ -135,7 +136,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_respond) {
             Intent i = new Intent(Intent.ACTION_SEND);
-            i.setType("message/rfc822");            i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"phancuong170796@gmail.com"});
+            i.setType("message/rfc822");
+            i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"phancuong170796@gmail.com"});
             i.putExtra(Intent.EXTRA_SUBJECT, "Chủ đề bài viết");
             i.putExtra(Intent.EXTRA_TEXT   , "Nội dung bạn gửi");
             try {
